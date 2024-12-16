@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Página Web</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #f4f4f9, #e0e0e5);
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(90deg, #2391a5, #2391a5);
+      color: #fff;
+      padding: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    h2 {
+      color: #000000;
+      border-bottom: 2px solid #000000;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .program {
+      background: #f9f9ff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .code {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      overflow-x: auto;
+      font-size: 0.9rem;
+    }
+
+    .video {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .video iframe {
+      max-width: 100%;
+      height: 360px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px 0;
+      background: #00b3a4;
+      color: #fff;
+      margin-top: 30px;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .video iframe {
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>El Título del Tema</h1>
+</header>
+
+<div class="container">
+  <section class="information">
+    <h2>Información del Tema</h2>
+    <p>La búsqueda es una operación clave para localizar elementos en estructuras de datos. La búsqueda secuencial revisa cada elemento uno a uno, siendo eficiente para conjuntos pequeños o desordenados. La búsqueda binaria, más eficiente, requiere listas ordenadas y divide el conjunto en mitades sucesivamente.
+
+      La búsqueda por funciones de hash asigna claves a índices específicos en una tabla, logrando accesos casi inmediatos. Es ampliamente utilizada en bases de datos y sistemas que requieren recuperación rápida de información.</p>
+  </section>
+
+  <section class="program">
+    <h2>Programa</h2>
+    <div class="code">
+<pre><code>import java.util.*;
+
+public class MetodosDeBusqueda {
+
+    // 6.1 Búsqueda Secuencial
+    public static int busquedaSecuencial(int[] arr, int clave) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == clave) {
+                return i; // Retorna la posición si encuentra la clave
+            }
+        }
+        return -1; // Retorna -1 si no encuentra la clave
+    }
+
+    // 6.2 Búsqueda Binaria
+    public static int busquedaBinaria(int[] arr, int clave) {
+        int low = 0;
+        int high = arr.length - 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            // Si el elemento está en el medio
+            if (arr[mid] == clave) {
+                return mid;
+            }
+            // Si el elemento es mayor que el medio, ignorar la mitad izquierda
+            if (arr[mid] < clave) {
+                low = mid + 1;
+            }
+            // Si el elemento es menor que el medio, ignorar la mitad derecha
+            else {
+                high = mid - 1;
+            }
+        }
+        return -1; // Retorna -1 si no encuentra la clave
+    }
+
+    // 6.3 Búsqueda por Funciones de HASH
+    static class TablaHash {
+        private List<Integer>[] tabla;
+        private static final int TAMANO_TABLA = 10;
+
+        public TablaHash() {
+            tabla = new List[TAMANO_TABLA];
+            for (int i = 0; i < TAMANO_TABLA; i++) {
+                tabla[i] = new ArrayList<>();
+            }
+        }
+
+        // Función Hash: Usamos el valor del elemento modificado por el tamaño de la tabla
+        private int funcionHash(int clave) {
+            return clave % TAMANO_TABLA;
+        }
+
+        // Insertar en la tabla hash
+        public void insertar(int clave) {
+            int posicion = funcionHash(clave);
+            tabla[posicion].add(clave);
+        }
+
+        // Búsqueda en la tabla hash
+        public boolean busquedaHash(int clave) {
+            int posicion = funcionHash(clave);
+            return tabla[posicion].contains(clave);
+        }
+    }
+
+    // Método para imprimir el resultado de las búsquedas
+    public static void imprimirResultado(int resultado) {
+        if (resultado == -1) {
+            System.out.println("Elemento no encontrado.");
+        } else {
+            System.out.println("Elemento encontrado en la posición: " + resultado);
+        }
+    }
+
+    public static void main(String[] args) {
+        // Arreglo para las búsquedas
+        int[] arreglo = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+
+        // Ejemplo de Búsqueda Secuencial
+        System.out.println("Búsqueda Secuencial:");
+        int claveSecuencial = 70;
+        int resultadoSecuencial = busquedaSecuencial(arreglo, claveSecuencial);
+        imprimirResultado(resultadoSecuencial);
+
+        // Ejemplo de Búsqueda Binaria (el arreglo debe estar ordenado)
+        System.out.println("\nBúsqueda Binaria:");
+        int claveBinaria = 50;
+        int resultadoBinaria = busquedaBinaria(arreglo, claveBinaria);
+        imprimirResultado(resultadoBinaria);
+
+        // Ejemplo de Búsqueda por Función de Hash
+        System.out.println("\nBúsqueda por Función de Hash:");
+        TablaHash tablaHash = new TablaHash();
+        for (int i : arreglo) {
+            tablaHash.insertar(i);
+        }
+        int claveHash = 30;
+        boolean resultadoHash = tablaHash.busquedaHash(claveHash);
+        if (resultadoHash) {
+            System.out.println("Elemento " + claveHash + " encontrado en la tabla hash.");
+        } else {
+            System.out.println("Elemento " + claveHash + " no encontrado en la tabla hash.");
+        }
+    }
+}
+</code></pre>
+    </div>
+  </section>
+
+  <section class="video">
+    <h2>Video Relacionado</h2>
+    <iframe width="1039" height="584" src="https://www.youtube.com/embed/dv8g-4vPglY" title="Curso Java. Algoritmos de Búsqueda. Búsqueda Secuencial." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </section>
+
+
+  <footer>
+  <p>&copy; 2024 Mi Página Web. Todos los derechos reservados.</p>
+</footer>
+</body>
+</html>

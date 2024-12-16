@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Página Web</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #f4f4f9, #e0e0e5);
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(90deg, #186eef, #00b3a4);
+      color: #fff;
+      padding: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    h2 {
+      color: #000000;
+      border-bottom: 2px solid #000000;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .program {
+      background: #f9f9ff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .code {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      overflow-x: auto;
+      font-size: 0.9rem;
+    }
+
+    .video {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .video iframe {
+      max-width: 100%;
+      height: 360px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px 0;
+      background: #00b3a4;
+      color: #fff;
+      margin-top: 30px;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .video iframe {
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>El Título del Tema</h1>
+</header>
+
+<div class="container">
+  <section class="information">
+    <h2>Información del Tema</h2>
+    <p>Las estructuras de datos son herramientas fundamentales en la programación, utilizadas para organizar, gestionar y almacenar información de manera eficiente. Estas se dividen en estructuras de datos primitivas y no primitivas. Las primitivas incluyen tipos básicos como enteros, flotantes, caracteres y booleanos, que son soportados directamente por el hardware del ordenador. Por su parte, las no primitivas son más complejas y abarcan arreglos, listas, pilas, colas, árboles, grafos, tablas hash y más.</p>
+    <p>Los Tipos de Datos Abstractos (TDA) no se enfocan en la implementación, sino en el conjunto de operaciones que permiten realizar. Por ejemplo, una pila es un TDA que admite las operaciones push (insertar), pop (eliminar) y peek (consultar el elemento superior). Asimismo, una cola ofrece operaciones como enqueue (inserción) y dequeue (eliminación).</p>
+    <p>El manejo eficiente de memoria también es crucial. La memoria estática, que se reserva durante la compilación, es rápida pero limitada en flexibilidad. En contraste, la memoria dinámica se asigna y libera en tiempo de ejecución, permitiendo a los programas adaptarse a requisitos cambiantes. Las estructuras como listas enlazadas aprovechan esta capacidad, mientras que otras, como los arreglos, dependen de memoria estática.</p>
+    <p>El análisis de algoritmos examina la eficiencia en términos de tiempo (velocidad de ejecución) y espacio (memoria utilizada). Por ejemplo, un algoritmo puede ser rápido pero usar demasiada memoria, o consumir poco espacio pero ser lento. Esto resalta la importancia de elegir la estructura de datos adecuada para optimizar ambos aspectos.</p>
+  </section>
+
+  <section class="program">
+    <h2>Programa</h2>
+    <div class="code">
+<pre><code>// Ejemplo de implementación de una pila en JavaScript
+class Stack {
+  constructor() {
+    this.items = [];
+  }
+
+  // Operación push: Agregar un elemento a la pila
+  push(element) {
+    this.items.push(element);
+  }
+
+  // Operación pop: Eliminar y devolver el último elemento
+  pop() {
+    if (this.isEmpty()) {
+      return "Underflow"; // La pila está vacía
+    }
+    return this.items.pop();
+  }
+
+  // Verificar si la pila está vacía
+  isEmpty() {
+    return this.items.length === 0;
+  }
+
+  // Obtener el elemento superior sin eliminarlo
+  peek() {
+    if (this.isEmpty()) {
+      return "No hay elementos en la pila";
+    }
+    return this.items[this.items.length - 1];
+  }
+
+  // Mostrar todos los elementos de la pila
+  printStack() {
+    return this.items.join(" -> ");
+  }
+}
+
+// Uso del Stack
+const stack = new Stack();
+stack.push(10);
+stack.push(20);
+stack.push(30);
+console.log("Pila:", stack.printStack()); // Salida: 10 -> 20 -> 30
+console.log("Elemento superior:", stack.peek()); // Salida: 30
+stack.pop();
+console.log("Pila después de pop:", stack.printStack()); // Salida: 10 -> 20</code></pre>
+    </div>
+  </section>
+
+  <section class="video">
+    <h2>Video Relacionado</h2>
+    <iframe width="1039" height="584" src="https://www.youtube.com/embed/Dg6jGpGqN0k" title="Estructuras de datos - Introducción" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </section>
+
+
+  <footer>
+  <p>&copy; 2024 Mi Página Web.</p>
+</footer>
+</body>
+</html>

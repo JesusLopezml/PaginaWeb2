@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Página Web</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #f4f4f9, #e0e0e5);
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(90deg, #1030d1, #64d519);
+      color: #fff;
+      padding: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    h2 {
+      color: #000000;
+      border-bottom: 2px solid #000000;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .program {
+      background: #f9f9ff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .code {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      overflow-x: auto;
+      font-size: 0.9rem;
+    }
+
+    .video {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .video iframe {
+      max-width: 100%;
+      height: 360px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px 0;
+      background: #186eef;
+      color: #fff;
+      margin-top: 30px;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .video iframe {
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>El Título del Tema</h1>
+</header>
+
+<div class="container">
+  <section class="information">
+    <h2>Información del Tema</h2>
+    <p>Las estructuras lineales organizan los datos en una secuencia. Las pilas son una estructura de acceso LIFO (Last In, First Out), donde las operaciones básicas son push (insertar) y pop (eliminar). Son útiles en tareas como el manejo de expresiones aritméticas y retrocesos. Las colas, en cambio, siguen la regla FIFO (First In, First Out), siendo empleadas en la administración de procesos en sistemas operativos. Estas pueden clasificarse en colas simples, circulares y bicolas, cada una adaptada a necesidades específicas.
+
+      Las listas son estructuras más flexibles que permiten insertar y eliminar elementos en cualquier posición. Existen listas simplemente enlazadas, doblemente enlazadas y circulares, y son ampliamente usadas en la gestión de memoria y el diseño de estructuras de datos complejas.</p>
+  </section>
+
+  <section class="program">
+    <h2>Programa</h2>
+    <div class="code">
+<pre><code>class Pila {
+    private int[] arr;
+    private int tope;
+
+    // Constructor
+    public Pila(int tamaño) {
+        arr = new int[tamaño];
+        tope = -1;
+    }
+
+    // Operación Push: Insertar elemento
+    public void push(int valor) {
+        if (tope < arr.length - 1) {
+            arr[++tope] = valor;
+            System.out.println("Elemento " + valor + " insertado.");
+        } else {
+            System.out.println("La pila está llena.");
+        }
+    }
+
+    // Operación Pop: Eliminar elemento
+    public int pop() {
+        if (tope == -1) {
+            System.out.println("La pila está vacía.");
+            return -1;
+        } else {
+            int valor = arr[tope--];
+            return valor;
+        }
+    }
+
+    // Operación Peek: Observar el elemento en el tope
+    public int peek() {
+        if (tope == -1) {
+            System.out.println("La pila está vacía.");
+            return -1;
+        } else {
+            return arr[tope];
+        }
+    }
+
+    // Verificar si la pila está vacía
+    public boolean estaVacia() {
+        return tope == -1;
+    }
+}
+
+public class EjemploPila {
+    public static void main(String[] args) {
+        Pila pila = new Pila(5);
+        pila.push(10);
+        pila.push(20);
+        pila.push(30);
+        System.out.println("Elemento en el tope: " + pila.peek());
+        pila.pop();
+        System.out.println("Elemento en el tope después de hacer pop: " + pila.peek());
+    }
+}
+  class Cola {
+    private int[] arr;
+    private int frente, finalCola;
+
+    // Constructor
+    public Cola(int tamaño) {
+        arr = new int[tamaño];
+        frente = -1;
+        finalCola = -1;
+    }
+
+    // Operación de inserción (enviar al final de la cola)
+    public void insertar(int valor) {
+        if (finalCola == arr.length - 1) {
+            System.out.println("La cola está llena.");
+        } else {
+            if (frente == -1) {
+                frente = 0;
+            }
+            arr[++finalCola] = valor;
+            System.out.println("Elemento " + valor + " insertado.");
+        }
+    }
+
+    // Operación de eliminación (sacar de la cola)
+    public int eliminar() {
+        if (frente == -1 || frente > finalCola) {
+            System.out.println("La cola está vacía.");
+            return -1;
+        } else {
+            int valor = arr[frente++];
+            return valor;
+        }
+    }
+
+    // Verificar si la cola está vacía
+    public boolean estaVacia() {
+        return frente == -1 || frente > finalCola;
+    }
+}
+
+public class EjemploCola {
+    public static void main(String[] args) {
+        Cola cola = new Cola(5);
+        cola.insertar(10);
+        cola.insertar(20);
+        System.out.println("Elemento eliminado: " + cola.eliminar());
+        cola.insertar(30);
+        System.out.println("Elemento eliminado: " + cola.eliminar());
+    }
+}
+class ColaCircular {
+    private int[] arr;
+    private int frente, finalCola, tamaño;
+
+    // Constructor
+    public ColaCircular(int tamaño) {
+        arr = new int[tamaño];
+        this.tamaño = tamaño;
+        frente = -1;
+        finalCola = -1;
+    }
+
+    // Operación de inserción
+    public void insertar(int valor) {
+        if ((finalCola + 1) % tamaño == frente) {
+            System.out.println("La cola está llena.");
+        } else {
+            if (frente == -1) {
+                frente = 0;
+            }
+            finalCola = (finalCola + 1) % tamaño;
+            arr[finalCola] = valor;
+            System.out.println("Elemento " + valor + " insertado.");
+        }
+    }
+
+    // Operación de eliminación
+    public int eliminar() {
+        if (frente == -1) {
+            System.out.println("La cola está vacía.");
+            return -1;
+        } else {
+            int valor = arr[frente];
+            if (frente == finalCola) {
+                frente = finalCola = -1; // La cola queda vacía
+            } else {
+                frente = (frente + 1) % tamaño;
+            }
+            return valor;
+        }
+    }
+}
+
+public class EjemploColaCircular {
+    public static void main(String[] args) {
+        ColaCircular cola = new ColaCircular(5);
+        cola.insertar(10);
+        cola.insertar(20);
+        System.out.println("Elemento eliminado: " + cola.eliminar());
+        cola.insertar(30);
+        System.out.println("Elemento eliminado: " + cola.eliminar());
+    }
+}
+class Nodo {
+    int valor;
+    Nodo siguiente;
+
+    // Constructor
+    public Nodo(int valor) {
+        this.valor = valor;
+        this.siguiente = null;
+    }
+}
+
+class ListaEnlazada {
+    Nodo cabeza;
+
+    // Insertar al final
+    public void insertar(int valor) {
+        Nodo nuevoNodo = new Nodo(valor);
+        if (cabeza == null) {
+            cabeza = nuevoNodo;
+        } else {
+            Nodo temp = cabeza;
+            while (temp.siguiente != null) {
+                temp = temp.siguiente;
+            }
+            temp.siguiente = nuevoNodo;
+        }
+    }
+
+    // Eliminar un valor
+    public void eliminar(int valor) {
+        if (cabeza == null) {
+            System.out.println("Lista vacía.");
+            return;
+        }
+        if (cabeza.valor == valor) {
+            cabeza = cabeza.siguiente;
+            return;
+        }
+        Nodo temp = cabeza;
+        while (temp.siguiente != null && temp.siguiente.valor != valor) {
+            temp = temp.siguiente;
+        }
+        if (temp.siguiente == null) {
+            System.out.println("Valor no encontrado.");
+        } else {
+            temp.siguiente = temp.siguiente.siguiente;
+        }
+    }
+
+    // Recorrer la lista
+    public void recorrer() {
+        Nodo temp = cabeza;
+        while (temp != null) {
+            System.out.print(temp.valor + " ");
+            temp = temp.siguiente;
+        }
+        System.out.println();
+    }
+}
+
+public class EjemploListaEnlazada {
+    public static void main(String[] args) {
+        ListaEnlazada lista = new ListaEnlazada();
+        lista.insertar(10);
+        lista.insertar(20);
+        lista.insertar(30);
+        lista.recorrer();  // Mostrar la lista
+        lista.eliminar(20);
+        lista.recorrer();  // Mostrar la lista después de eliminar 20
+    }
+}
+
+</code></pre>
+    </div>
+  </section>
+
+  <section class="video">
+    <h2>Video Relacionado</h2>
+    <iframe width="941" height="588" src="https://www.youtube.com/embed/p1Q5WFT0PG4" title="Estructuras Enlazadas Lineales" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </section>
+
+
+  <footer>
+  <p>&copy; 2024 Mi Página Web. Todos los derechos reservados.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Página Web</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #f4f4f9, #e0e0e5);
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(90deg, #cc8317, #ccc105);
+      color: #fff;
+      padding: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    h2 {
+      color: #000000;
+      border-bottom: 2px solid #000000;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .program {
+      background: #f9f9ff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .code {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      overflow-x: auto;
+      font-size: 0.9rem;
+    }
+
+    .video {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .video iframe {
+      max-width: 100%;
+      height: 360px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px 0;
+      background: #cc8317;
+      color: #fff;
+      margin-top: 30px;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .video iframe {
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>El Título del Tema</h1>
+</header>
+
+<div class="container">
+  <section class="information">
+    <h2>Información del Tema</h2>
+    <p>Las estructuras no lineales como árboles y grafos permiten representar relaciones jerárquicas o redes complejas. Los árboles tienen una estructura jerárquica donde cada nodo puede tener varios hijos, pero solo un padre. Tipos como árboles binarios y AVL optimizan operaciones de búsqueda y almacenamiento.
+
+      Los grafos modelan relaciones entre pares de elementos (vértices) conectados por aristas. Pueden representarse mediante matrices o listas de adyacencia, y se usan en problemas como el diseño de redes y la navegación de rutas. Las operaciones básicas incluyen recorridos como BFS (Breadth-First Search) y DFS (Depth-First Search).</p>
+  </section>
+
+  <section class="program">
+    <h2>Programa</h2>
+    <div class="code">
+<pre><code>// Nodo de árbol binario
+class Nodo {
+    int valor;
+    Nodo izquierdo, derecho;
+
+    // Constructor
+    public Nodo(int valor) {
+        this.valor = valor;
+        izquierdo = derecho = null;
+    }
+}
+
+// Clase Árbol Binario
+class ArbolBinario {
+    Nodo raiz;
+
+    // Inserción en el árbol binario
+    public Nodo insertar(Nodo raiz, int valor) {
+        if (raiz == null) {
+            raiz = new Nodo(valor);
+            return raiz;
+        }
+        if (valor < raiz.valor) {
+            raiz.izquierdo = insertar(raiz.izquierdo, valor);
+        } else {
+            raiz.derecho = insertar(raiz.derecho, valor);
+        }
+        return raiz;
+    }
+
+    // Recorrido preorden (Raíz, Izquierda, Derecha)
+    public void preorden(Nodo raiz) {
+        if (raiz != null) {
+            System.out.print(raiz.valor + " ");
+            preorden(raiz.izquierdo);
+            preorden(raiz.derecho);
+        }
+    }
+
+    // Recorrido inorden (Izquierda, Raíz, Derecha)
+    public void inorden(Nodo raiz) {
+        if (raiz != null) {
+            inorden(raiz.izquierdo);
+            System.out.print(raiz.valor + " ");
+            inorden(raiz.derecho);
+        }
+    }
+
+    // Recorrido postorden (Izquierda, Derecha, Raíz)
+    public void postorden(Nodo raiz) {
+        if (raiz != null) {
+            postorden(raiz.izquierdo);
+            postorden(raiz.derecho);
+            System.out.print(raiz.valor + " ");
+        }
+    }
+
+    public static void main(String[] args) {
+        ArbolBinario arbol = new ArbolBinario();
+        arbol.raiz = arbol.insertar(arbol.raiz, 50);
+        arbol.insertar(arbol.raiz, 30);
+        arbol.insertar(arbol.raiz, 20);
+        arbol.insertar(arbol.raiz, 40);
+        arbol.insertar(arbol.raiz, 70);
+        arbol.insertar(arbol.raiz, 60);
+        arbol.insertar(arbol.raiz, 80);
+
+        System.out.println("Recorrido Preorden:");
+        arbol.preorden(arbol.raiz);
+
+        System.out.println("\nRecorrido Inorden:");
+        arbol.inorden(arbol.raiz);
+
+        System.out.println("\nRecorrido Postorden:");
+        arbol.postorden(arbol.raiz);
+    }
+}
+class NodoAVL {
+    int valor;
+    NodoAVL izquierdo, derecho;
+    int altura;
+
+    public NodoAVL(int valor) {
+        this.valor = valor;
+        this.izquierdo = this.derecho = null;
+        this.altura = 1;
+    }
+}
+
+class ArbolAVL {
+    NodoAVL raiz;
+
+    // Obtener la altura de un nodo
+    int altura(NodoAVL nodo) {
+        if (nodo == null)
+            return 0;
+        return nodo.altura;
+    }
+
+    // Obtener el factor de equilibrio (balance) de un nodo
+    int obtenerBalance(NodoAVL nodo) {
+        if (nodo == null)
+            return 0;
+        return altura(nodo.izquierdo) - altura(nodo.derecho);
+    }
+
+    // Rotación simple a la derecha
+    NodoAVL rotarDerecha(NodoAVL y) {
+        NodoAVL x = y.izquierdo;
+        NodoAVL T2 = x.derecho;
+
+        x.derecho = y;
+        y.izquierdo = T2;
+
+        y.altura = Math.max(altura(y.izquierdo), altura(y.derecho)) + 1;
+        x.altura = Math.max(altura(x.izquierdo), altura(x.derecho)) + 1;
+
+        return x;
+    }
+
+    // Rotación simple a la izquierda
+    NodoAVL rotarIzquierda(NodoAVL x) {
+        NodoAVL y = x.derecho;
+        NodoAVL T2 = y.izquierdo;
+
+        y.izquierdo = x;
+        x.derecho = T2;
+
+        x.altura = Math.max(altura(x.izquierdo), altura(x.derecho)) + 1;
+        y.altura = Math.max(altura(y.izquierdo), altura(y.derecho)) + 1;
+
+        return y;
+    }
+
+    // Insertar un valor en el árbol AVL
+    public NodoAVL insertar(NodoAVL nodo, int valor) {
+        if (nodo == null)
+            return new NodoAVL(valor);
+
+        if (valor < nodo.valor)
+            nodo.izquierdo = insertar(nodo.izquierdo, valor);
+        else if (valor > nodo.valor)
+            nodo.derecho = insertar(nodo.derecho, valor);
+        else
+            return nodo;
+
+        nodo.altura = 1 + Math.max(altura(nodo.izquierdo), altura(nodo.derecho));
+
+        int balance = obtenerBalance(nodo);
+
+        // Caso de rotación
+        if (balance > 1 && valor < nodo.izquierdo.valor)
+            return rotarDerecha(nodo);
+
+        if (balance < -1 && valor > nodo.derecho.valor)
+            return rotarIzquierda(nodo);
+
+        if (balance > 1 && valor > nodo.izquierdo.valor) {
+            nodo.izquierdo = rotarIzquierda(nodo.izquierdo);
+            return rotarDerecha(nodo);
+        }
+
+        if (balance < -1 && valor < nodo.derecho.valor) {
+            nodo.derecho = rotarDerecha(nodo.derecho);
+            return rotarIzquierda(nodo);
+        }
+
+        return nodo;
+    }
+
+    public static void main(String[] args) {
+        ArbolAVL arbolAVL = new ArbolAVL();
+        arbolAVL.raiz = arbolAVL.insertar(arbolAVL.raiz, 10);
+        arbolAVL.raiz = arbolAVL.insertar(arbolAVL.raiz, 20);
+        arbolAVL.raiz = arbolAVL.insertar(arbolAVL.raiz, 30);
+        arbolAVL.raiz = arbolAVL.insertar(arbolAVL.raiz, 40);
+        arbolAVL.raiz = arbolAVL.insertar(arbolAVL.raiz, 50);
+        arbolAVL.raiz = arbolAVL.insertar(arbolAVL.raiz, 25);
+
+        System.out.println("Árbol AVL insertado y balanceado.");
+    }
+}
+
+class Grafo {
+    private Map<Integer>, List<Integer>> adjacencia;
+
+    // Constructor
+    public Grafo() {
+        adjacencia = new HashMap<>();
+    }
+
+    // Añadir un vértice
+    public void añadirVertice(int vertice) {
+        adjacencia.putIfAbsent(vertice, new ArrayList<>());
+    }
+
+    // Añadir una arista
+    public void añadirArista(int v1, int v2) {
+        adjacencia.get(v1).add(v2);
+        adjacencia.get(v2).add(v1);  // Grafo no dirigido
+    }
+
+    // Recorrido en anchura (BFS)
+    public void BFS(int inicio) {
+        Set<Integer> visitados = new HashSet<>();
+        Queue<Integer> cola = new LinkedList<>();
+
+        visitados.add(inicio);
+        cola.add(inicio);
+
+        while (!cola.isEmpty()) {
+            int vertice = cola.poll();
+            System.out.print(vertice + " ");
+
+            for (int vecino : adjacencia.get(vertice)) {
+                if (!visitados.contains(vecino)) {
+                    visitados.add(vecino);
+                    cola.add(vecino);
+                }
+            }
+        }
+    }
+
+    // Recorrido en profundidad (DFS)
+    public void DFS(int inicio) {
+        Set<Integer> visitados = new HashSet<>();
+        DFSRecursivo(inicio, visitados);
+    }
+
+    // DFS Recursivo
+    private void DFSRecursivo(int vertice, Set<Integer> visitados) {
+        visitados.add(vertice);
+        System.out.print(vertice + " ");
+
+        for (int vecino : adjacencia.get(vertice)) {
+            if (!visitados.contains(vecino)) {
+                DFSRecursivo(vecino, visitados);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Grafo grafo = new Grafo();
+        grafo.añadirVertice(1);
+        grafo.añadirVertice(2);
+        grafo.añadirVertice(3);
+        grafo.añadirVertice(4);
+        grafo.añadirArista(1, 2);
+        grafo.añadirArista(1, 3);
+        grafo.añadirArista(2, 4);
+
+        System.out.println("Recorrido BFS:");
+        grafo.BFS(1);
+
+        System.out.println("\nRecorrido DFS:");
+        grafo.DFS(1);
+    }
+}
+</code></pre>
+    </div>
+  </section>
+
+  <section class="video">
+    <h2>Video Relacionado</h2>
+    <iframe width="1039" height="587" src="https://www.youtube.com/embed/em3mENEHHQU" title="ESTRUCTURAS DE DATOS NO LINEALES BY MARK✖️TECH" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </section>
+
+  <footer>
+  <p>&copy; 2024 Mi Página Web. Todos los derechos reservados.</p>
+</footer>
+</body>
+</html>

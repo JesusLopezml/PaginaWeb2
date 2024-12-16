@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Página Web</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #f4f4f9, #e0e0e5);
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(90deg, #930909, #00b3a4);
+      color: #fff;
+      padding: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    h2 {
+      color: #000000;
+      border-bottom: 2px solid #000000;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .program {
+      background: #f9f9ff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .code {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      overflow-x: auto;
+      font-size: 0.9rem;
+    }
+
+    .video {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .video iframe {
+      max-width: 100%;
+      height: 360px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px 0;
+      background: #930909;
+      color: #fff;
+      margin-top: 30px;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .video iframe {
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>El Título del Tema</h1>
+</header>
+
+<div class="container">
+  <section class="information">
+    <h2>Información del Tema</h2>
+    <p>La recursividad es una técnica poderosa que permite resolver problemas complejos mediante la división en subproblemas similares. Esta técnica requiere dos componentes fundamentales: una condición base que detenga la recursión, y una llamada recursiva que acerque el problema a dicha condición base. Si cualquiera de estos elementos falta, el programa podría caer en un bucle infinito y ocasionar un desbordamiento de pila (stack overflow).</p>
+    <p>Además de los ejemplos clásicos como el cálculo del factorial y la sucesión de Fibonacci, la recursividad se aplica en algoritmos de búsqueda y ordenamiento. Por ejemplo, en el recorrido de árboles binarios (preorden, inorden y postorden) y en algoritmos como Quicksort y MergeSort.</p>
+    <p>Es importante destacar las desventajas de la recursividad: un mayor consumo de memoria debido al mantenimiento de múltiples llamadas activas en la pila, y un posible impacto en el rendimiento. Sin embargo, cuando se implementa correctamente, puede simplificar significativamente el diseño de algoritmos complejos, haciéndolos más legibles y modulares.</p>
+  </section>
+
+  <section class="program">
+    <h2>Programa</h2>
+    <div class="code">
+<pre><code>public class Recursividad {
+
+    // Método recursivo para calcular el factorial
+    public static int factorial(int n) {
+        if (n == 0) {  // Caso base
+            return 1;
+        } else {
+            return n * factorial(n - 1);  // Llamada recursiva
+        }
+    }
+
+    public static void main(String[] args) {
+        int numero = 5;
+        System.out.println("El factorial de " + numero + " es: " + factorial(numero));
+    }
+}
+  public class Recursividad {
+
+    // Método recursivo para calcular el n-ésimo número de Fibonacci
+    public static int fibonacci(int n) {
+        if (n <= 1) {  // Caso base
+            return n;
+        } else {
+            return fibonacci(n - 1) + fibonacci(n - 2);  // Llamada recursiva
+        }
+    }
+
+    public static void main(String[] args) {
+        int numero = 6;
+        System.out.println("El número de Fibonacci en la posición " + numero + " es: " + fibonacci(numero));
+    }
+}
+class Nodo {
+    int valor;
+    Nodo izquierdo, derecho;
+
+    // Constructor
+    public Nodo(int valor) {
+        this.valor = valor;
+        izquierdo = derecho = null;
+    }
+}
+
+public class ArbolBinario {
+
+    Nodo raiz;
+
+    // Método recursivo para realizar la búsqueda en el árbol
+    public boolean buscar(Nodo raiz, int valor) {
+        // Caso base: Si el árbol está vacío o hemos encontrado el valor
+        if (raiz == null || raiz.valor == valor) {
+            return raiz != null;
+        }
+
+        // Si el valor es menor que el valor de la raíz, buscar en el subárbol izquierdo
+        if (valor < raiz.valor) {
+            return buscar(raiz.izquierdo, valor);
+        }
+
+        // Si el valor es mayor, buscar en el subárbol derecho
+        return buscar(raiz.derecho, valor);
+    }
+
+    public static void main(String[] args) {
+        ArbolBinario arbol = new ArbolBinario();
+        arbol.raiz = new Nodo(10);
+        arbol.raiz.izquierdo = new Nodo(5);
+        arbol.raiz.derecho = new Nodo(15);
+        arbol.raiz.izquierdo.izquierdo = new Nodo(3);
+        arbol.raiz.izquierdo.derecho = new Nodo(7);
+
+        int valorBuscar = 7;
+        System.out.println("¿El valor " + valorBuscar + " está en el árbol? " + arbol.buscar(arbol.raiz, valorBuscar));
+    }
+}
+
+</code></pre>
+    </div>
+  </section>
+
+  <section class="video">
+    <h2>Video Relacionado</h2>
+    <iframe width="1039" height="584" src="https://www.youtube.com/embed/YwRjEOFxvO0" title="Recursividad | FÁCIL de entender y visualizar | Recursión" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </section>
+
+
+  <footer>
+  <p>&copy; 2024 Mi Página Web. Todos los derechos reservados.</p>
+</footer>
+</body>
+</html>
